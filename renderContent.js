@@ -2,15 +2,18 @@ import { token } from "./api.js";
 import { authorization } from "./loginPage.js";
 import { addLike, answer, getLikeClass } from "./renderApp.js";
 import { users, name } from "./users.js"
+import { format } from "date-fns";
 
 
 export const renderApp = () => {
+    
     const appElement = document.getElementById("app");
     const userHtml = users.map((user) => {
+      const createDate = format(new Date(user.date), 'yyyy-MM-dd hh.mm.ss');
         return `<li id="last-element" class="comment">
         <div class="comment-header">
             <div>${user.author.name}</div>
-            <div>${user.date}</div>
+            <div>${createDate}</div>
           </div>
           <div class="comment-body">
             <div class="comment-text">
